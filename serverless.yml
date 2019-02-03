@@ -7,10 +7,6 @@
 # The `service` block is the name of the service
 service: serverless-stripe
 
-# Add the serverless-webpack plugin
-plugins:
-  - serverless-webpack
-
 # Configuration variables
 custom:
   secrets: ${file(secrets.json)}
@@ -28,10 +24,11 @@ provider:
 # The `functions` block defines what code to deploy
 functions:
   createCharge:
-    handler: functions/createCharge.handler
-    # The `events` block defines how to trigger the handler.createCharge code
-    events:
+    handler: handler.createCharge
+
+   events:
       - http:
           path: charges
+          integration: lambda-proxy
           method: post
           cors: true
