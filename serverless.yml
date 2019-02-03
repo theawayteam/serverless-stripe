@@ -26,7 +26,7 @@ functions:
   createCharge:
     handler: handler.createCharge
 
-   events:
+    events:
       - http:
           path: charges
           integration: lambda-proxy
