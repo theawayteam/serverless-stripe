@@ -6,6 +6,7 @@ module.exports.createCharge = async (event, context) => {
   const token = requestBody.token.id;
   const amount = requestBody.charge.amount;
   const currency = requestBody.charge.currency;
+  const metadata = requestBody.metadata;
   const response = {
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -18,7 +19,8 @@ module.exports.createCharge = async (event, context) => {
       amount,
       currency,
       description: 'The Away Team, LLC',
-      source: token
+      source: token,
+      metadata
     });
     // successful charge created
     response.statusCode = 200;
